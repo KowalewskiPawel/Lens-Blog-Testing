@@ -1,0 +1,47 @@
+{
+  "name": "blog-lens-api",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@apollo/client": "^3.6.2",
+    "@testing-library/react": "^13.2.0",
+    "cra-template-ts": "0.3.4",
+    "graphql": "^16.5.0",
+    "postcss": "^8.4.13",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-redux": "^8.0.1",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "rxjs": "^7.5.5",
+    "tailwindcss": "^3.0.24"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "analyze": "source-map-explorer \"build/static/js/*.js\"",
+    "format": "prettier \"**/*.{css,html,js,jsx,json,less,md,scss,ts,tsx,yml}\" -c -w",
+    "icons": "pwa-asset-generator \"src/assets/images/icons/logo.svg\" \"public/static/images/icons\" -f -i \"public/index.html\" -m \"public/manifest.json\" -o false -t png -v \"static/images/icons\"",
+    "lint": "npm run lint:eslint && npm run lint:stylelint",
+    "lint:eslint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
+    "lint:stylelint": "stylelint \"**/*.{css,less,scss}\"",
+    "prebuild": "npm run format && npm run lint && npm run test:ci",
+    "serve": "serve build -s",
+    "serve:https": "serve build -s --ssl-cert \"src/config/ssl/cert.pem\" --ssl-key \"src/config/ssl/key.pem\"",
+    "setup": "npm run setup:husky && npm run setup:ssl",
+    "setup:husky": "husky install && husky add \".husky/pre-commit\" \"npx --no-install lint-staged\"",
+    "setup:ssl": "mkdirp \"src/config/ssl\" && mkcert -cert-file \"src/config/ssl/cert.pem\" -key-file \"src/config/ssl/key.pem\" localhost",
+    "test:ci": "cross-env CI=true npm test --env=jsdom",
+    "test:coverage": "cross-env CI=true npm test -- --coverage",
+    "test:debug": "react-scripts --inspect-brk test --runInBand"
+  },
+  "eslintConfig": {},
+  "browserslist": [
+    "> 0.2%",
+    "defaults ",
+    "not IE 11",
+    "not op_mini all"
+  ]
+}
